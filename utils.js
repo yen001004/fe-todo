@@ -7,18 +7,11 @@ const countStatus = (statusOption) => {
 };
 
 const printNowStatus = () => {
-    console.log(
-        "현재상태 : " +
-            "todo : " +
-            countStatus("todo") +
-            "개, " +
-            "doing : " +
-            countStatus("doing") +
-            "개, " +
-            "done : " +
-            countStatus("done") +
-            "개"
-    ); // reduce로 수정
+    const statusList = ["todo", "doing", "done"];
+    const statusCounts = statusList.map(
+        (status) => `${status} : ${countStatus(status)}개`
+    );
+    console.log("현재상태 : " + statusCounts.join(", "));
 };
 
 const printStatusList = (status) => {
