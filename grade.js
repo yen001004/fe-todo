@@ -5,11 +5,14 @@ const {
     commandDelete,
     commandUpdate,
 } = require("./commands");
+const { displayInitialPrompt } = require("./prompt");
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
+
+displayInitialPrompt();
 
 rl.setPrompt("\x1b[32m명령하세요 : \x1b[0m");
 
@@ -35,6 +38,7 @@ rl.on("line", (line) => {
         default:
             break;
     }
+    console.log("");
     rl.prompt();
 });
 
