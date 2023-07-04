@@ -1,10 +1,16 @@
 const todos = require("./todos.js");
 const { printStatusList, getId, printNowStatus } = require("./utils.js");
 
+const errorText = "\x1b[31m오류 :\x1b[0m ";
+
 const commandShow = (commandArr) => {
     if (commandArr.length === 1)
-        console.log("[ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !");
-    else if (commandArr.length > 2) console.log("하나의 옵션을 입력하세요 !");
+        console.log(
+            errorText +
+                "[ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !"
+        );
+    else if (commandArr.length > 2)
+        console.log(errorText + "하나의 옵션을 입력하세요 !");
     else {
         switch (commandArr[1]) {
             case "all":
@@ -22,9 +28,9 @@ const commandShow = (commandArr) => {
 
 const commandAdd = (commandArr) => {
     if (commandArr.length === 1)
-        console.log("추가할 todo의 이름과 태그를 입력하세요 !");
+        console.log(errorText + "추가할 todo의 이름과 태그를 입력하세요 !");
     else if (commandArr.length === 2)
-        console.log("추가할 todo의 태그를 입력하세요 !");
+        console.log(errorText + "추가할 todo의 태그를 입력하세요 !");
     else {
         const newId = getId();
         try {
@@ -41,16 +47,18 @@ const commandAdd = (commandArr) => {
             printNowStatus();
         } catch (error) {
             console.log(
-                `["태그1", "태그2"]와 같은 형태로 태그를 입력해주세요 !`
+                errorText +
+                    `["태그1", "태그2"]와 같은 형태로 태그를 입력해주세요 !`
             );
         }
     }
 };
 
 const commandDelete = (commandArr) => {
-    if (commandArr.length === 1) console.log("삭제할 id 번호를 입력해주세요 !");
+    if (commandArr.length === 1)
+        console.log(errorText + "삭제할 id 번호를 입력해주세요 !");
     else if (commandArr.length > 2)
-        console.log("하나의 id 번호를 입력하세요 !");
+        console.log(errorText + "하나의 id 번호를 입력하세요 !");
     else {
         const index = todos.findIndex(
             (data) => data.id === Number(commandArr[1])
@@ -61,16 +69,18 @@ const commandDelete = (commandArr) => {
             console.log(`${deleteObj.name} todo가 목록에서 삭제됐습니다`);
             printNowStatus();
         } else {
-            console.log(`id ${commandArr[1]}는 존재하지 않는 id 입니다`);
+            console.log(
+                errorText + `id ${commandArr[1]}는 존재하지 않는 id 입니다`
+            );
         }
     }
 };
 
 const commandUpdate = (commandArr) => {
     if (commandArr.length === 1)
-        console.log("변경할 todo의 id와 상태를 입력하세요 !");
+        console.log(errorText + "변경할 todo의 id와 상태를 입력하세요 !");
     else if (commandArr.length === 2)
-        console.log("변경할 todo의 상태를 입력하세요 !");
+        console.log(errorText + "변경할 todo의 상태를 입력하세요 !");
     else {
         const todoObj = todos.find((data) => data.id === Number(commandArr[1]));
         if (todoObj) {
@@ -80,7 +90,9 @@ const commandUpdate = (commandArr) => {
             );
             printNowStatus();
         } else {
-            console.log(`id ${commandArr[1]}는 존재하지 않는 id 입니다`);
+            console.log(
+                errorText + `id ${commandArr[1]}는 존재하지 않는 id 입니다`
+            );
         }
     }
 };

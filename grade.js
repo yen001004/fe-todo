@@ -37,7 +37,9 @@ rl.on("line", (line) => {
             rl.close();
         default:
             displayInitialPrompt();
-            console.log("입력 가능한 명령어 중 하나를 입력해주세요 !");
+            console.log(
+                "\x1b[31m오류 :\x1b[0m 입력 가능한 명령어 중 하나를 입력해주세요 !"
+            );
             break;
     }
     console.log("");
