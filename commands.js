@@ -1,10 +1,5 @@
 const todos = require("./todos.js");
-const {
-    countStatus,
-    printStatusList,
-    getId,
-    printNowStatus,
-} = require("./utils.js");
+const { printStatusList, getId, printNowStatus } = require("./utils.js");
 
 const commandShow = (commandArr) => {
     if (commandArr.length === 1)
@@ -32,14 +27,23 @@ const commandAdd = (commandArr) => {
         console.log("추가할 todo의 태그를 입력하세요 !");
     else {
         const newId = getId();
-        todos.push({
-            name: commandArr[1],
-            tags: JSON.parse(commandArr[2]), // 예외처리
-            status: "todo",
-            id: newId,
-        });
-        console.log(commandArr[1] + " 1개가 추가됐습니다.(id : " + newId + ")");
-        printNowStatus();
+        try {
+            const tagsArr = JSON.parse(commandArr[2]);
+            todos.push({
+                name: commandArr[1],
+                tags: Array.isArray(tagsArr) ? tagsArr : [],
+                status: "todo",
+                id: newId,
+            });
+            console.log(
+                commandArr[1] + " 1개가 추가됐습니다.(id : " + newId + ")"
+            );
+            printNowStatus();
+        } catch (error) {
+            console.log(
+                `["태그1", "태그2"]와 같은 형태로 태그를 입력해주세요 !`
+            );
+        }
     }
 };
 
