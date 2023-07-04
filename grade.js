@@ -36,6 +36,8 @@ rl.on("line", (line) => {
         case "exit":
             rl.close();
         default:
+            displayInitialPrompt();
+            console.log("입력 가능한 명령어 중 하나를 입력해주세요 !");
             break;
     }
     console.log("");
