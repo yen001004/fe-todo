@@ -1,6 +1,7 @@
 const todos = require("./todos.js");
 
 let gId = 1;
+const errorText = "\x1b[31m오류 :\x1b[0m ";
 
 const countStatus = (statusOption) => {
     return todos.filter((data) => data.status === statusOption).length;
@@ -35,9 +36,17 @@ const getId = () => {
     return newId;
 };
 
+const checkSameStatus = (prevStatus, changeStatus) => {
+    if (prevStatus === changeStatus) {
+        console.log(`${errorText} 변경할 상태가 이전 상태와 동일합니다 !`);
+        return true;
+    } else return false;
+};
+
 module.exports = {
     countStatus,
     printNowStatus,
     printStatusList,
     getId,
+    checkSameStatus,
 };

@@ -1,5 +1,10 @@
 const todos = require("./todos.js");
-const { printStatusList, getId, printNowStatus } = require("./utils.js");
+const {
+    printStatusList,
+    getId,
+    printNowStatus,
+    checkSameStatus,
+} = require("./utils.js");
 
 const errorText = "\x1b[31m오류 :\x1b[0m ";
 
@@ -84,11 +89,7 @@ const updateCommand = (commandArr) => {
     else {
         const todoObj = todos.find((data) => data.id === Number(commandArr[1]));
         if (todoObj) {
-            if (todoObj.status === commandArr[2]) {
-                console.log(
-                    `${errorText} 변경할 상태가 이전 상태와 동일합니다 !`
-                );
-            } else {
+            if (!checkSameStatus(todoObj.status, commandArr[2])) {
                 todoObj.status = commandArr[2];
                 console.log(
                     `${todoObj.name} ${commandArr[2]}으로 상태가 변경됐습니다`
