@@ -36,8 +36,8 @@ const commandAdd = (commandArr) => {
     else if (commandArr.length === 2)
         console.log(errorText + "추가할 todo의 태그를 입력하세요 !");
     else {
-        const newId = getId();
         try {
+            const newId = getId();
             const tagsArr = JSON.parse(commandArr[2].replaceAll("'", '"'));
             todos.push({
                 name: commandArr[1],
