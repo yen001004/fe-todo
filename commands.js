@@ -3,7 +3,7 @@ const { printStatusList, getId, printNowStatus } = require("./utils.js");
 
 const errorText = "\x1b[31m오류 :\x1b[0m ";
 
-const commandShow = (commandArr) => {
+const showCommand = (commandArr) => {
     if (commandArr.length === 1)
         console.log(
             errorText +
@@ -31,7 +31,7 @@ const commandShow = (commandArr) => {
     }
 };
 
-const commandAdd = (commandArr) => {
+const addCommand = (commandArr) => {
     if (commandArr.length === 1)
         console.log(errorText + "추가할 todo의 이름과 태그를 입력하세요 !");
     else if (commandArr.length === 2)
@@ -59,7 +59,7 @@ const commandAdd = (commandArr) => {
     }
 };
 
-const commandDelete = (commandArr) => {
+const deleteCommand = (commandArr) => {
     if (commandArr.length === 1)
         console.log(errorText + "삭제할 id 번호를 입력해주세요 !");
     else if (commandArr.length > 2)
@@ -81,7 +81,7 @@ const commandDelete = (commandArr) => {
     }
 };
 
-const commandUpdate = (commandArr) => {
+const updateCommand = (commandArr) => {
     if (commandArr.length === 1)
         console.log(errorText + "변경할 todo의 id와 상태를 입력하세요 !");
     else if (commandArr.length === 2)
@@ -103,8 +103,8 @@ const commandUpdate = (commandArr) => {
 };
 
 module.exports = {
-    commandShow,
-    commandAdd,
-    commandDelete,
-    commandUpdate,
+    showCommand,
+    addCommand,
+    deleteCommand,
+    updateCommand,
 };

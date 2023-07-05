@@ -1,9 +1,9 @@
 const readline = require("readline");
 const {
-    commandShow,
-    commandAdd,
-    commandDelete,
-    commandUpdate,
+    showCommand,
+    addCommand,
+    deleteCommand,
+    updateCommand,
 } = require("./commands");
 const { displayInitialPrompt } = require("./prompt");
 
@@ -22,16 +22,16 @@ rl.on("line", (line) => {
 
     switch (commandArr[0]) {
         case "show":
-            commandShow(commandArr);
+            showCommand(commandArr);
             break;
         case "add":
-            commandAdd(commandArr);
+            addCommand(commandArr);
             break;
         case "delete":
-            commandDelete(commandArr);
+            deleteCommand(commandArr);
             break;
         case "update":
-            commandUpdate(commandArr);
+            updateCommand(commandArr);
             break;
         case "exit":
             rl.close();

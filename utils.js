@@ -20,11 +20,9 @@ const printStatusList = (status) => {
         (data) => `'${data.name}, ${data.id}번'`
     );
     console.log(
-        status +
-            "리스트 : 총" +
-            filteredTodos.length +
-            "건 : " +
-            todoStringList.join(", ")
+        `${status}리스트 : 총${filteredTodos.length}건 : ${todoStringList.join(
+            ", "
+        )}`
     );
 };
 
