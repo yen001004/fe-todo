@@ -12,7 +12,7 @@ const displayInitialPrompt = () => {
     console.log("");
     console.log(
         "  2. \x1b[33madd\x1b[0m" +
-            "$[\x1b[36m이름\x1b[0m]$[\x1b[36m'태그1', '태그2', ...\x1b[0m]"
+            "$[\x1b[36m이름\x1b[0m]$[\x1b[36m['태그1', '태그2', ...]\x1b[0m]"
     );
     console.log("");
     console.log("  3. \x1b[33mdelete\x1b[0m" + "$[\x1b[36m삭제할 id\x1b[0m]");
