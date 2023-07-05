@@ -21,6 +21,10 @@ const commandShow = (commandArr) => {
             case "done":
                 printStatusList(commandArr[1]);
             default:
+                console.log(
+                    errorText +
+                        "[ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !"
+                );
                 break;
         }
     }
@@ -34,7 +38,7 @@ const commandAdd = (commandArr) => {
     else {
         const newId = getId();
         try {
-            const tagsArr = JSON.parse(commandArr[2]);
+            const tagsArr = JSON.parse(commandArr[2].replaceAll("'", '"'));
             todos.push({
                 name: commandArr[1],
                 tags: Array.isArray(tagsArr) ? tagsArr : [],
