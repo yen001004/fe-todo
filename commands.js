@@ -6,11 +6,10 @@ const errorText = "\x1b[31m오류 :\x1b[0m ";
 const showCommand = (commandArr) => {
     if (commandArr.length === 1)
         console.log(
-            errorText +
-                "[ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !"
+            `${errorText} [ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !`
         );
     else if (commandArr.length > 2)
-        console.log(errorText + "하나의 옵션을 입력하세요 !");
+        console.log(`${errorText} 하나의 옵션을 입력하세요 !`);
     else {
         switch (commandArr[1]) {
             case "all":
@@ -23,8 +22,7 @@ const showCommand = (commandArr) => {
                 break;
             default:
                 console.log(
-                    errorText +
-                        "[ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !"
+                    `${errorText} [ all, todo, doing, done ] 중 하나의 옵션을 입력하세요 !`
                 );
                 break;
         }
@@ -33,9 +31,9 @@ const showCommand = (commandArr) => {
 
 const addCommand = (commandArr) => {
     if (commandArr.length === 1)
-        console.log(errorText + "추가할 todo의 이름과 태그를 입력하세요 !");
+        console.log(`${errorText} 추가할 todo의 이름과 태그를 입력하세요 !`);
     else if (commandArr.length === 2)
-        console.log(errorText + "추가할 todo의 태그를 입력하세요 !");
+        console.log(`${errorText} 추가할 todo의 태그를 입력하세요 !`);
     else {
         try {
             const newId = getId();
@@ -46,14 +44,11 @@ const addCommand = (commandArr) => {
                 status: "todo",
                 id: newId,
             });
-            console.log(
-                commandArr[1] + " 1개가 추가됐습니다.(id : " + newId + ")"
-            );
+            console.log(`${commandArr[1]} 1개가 추가됐습니다.(id : ${newId})`);
             printNowStatus();
         } catch (error) {
             console.log(
-                errorText +
-                    `["태그1", "태그2"]와 같은 형태로 태그를 입력해주세요 !`
+                `${errorText} ["태그1", "태그2"]와 같은 형태로 태그를 입력해주세요 !`
             );
         }
     }
@@ -61,9 +56,9 @@ const addCommand = (commandArr) => {
 
 const deleteCommand = (commandArr) => {
     if (commandArr.length === 1)
-        console.log(errorText + "삭제할 id 번호를 입력해주세요 !");
+        console.log(`${errorText} "삭제할 id 번호를 입력해주세요 !`);
     else if (commandArr.length > 2)
-        console.log(errorText + "하나의 id 번호를 입력하세요 !");
+        console.log(`${errorText} "하나의 id 번호를 입력하세요 !`);
     else {
         const index = todos.findIndex(
             (data) => data.id === Number(commandArr[1])
@@ -75,7 +70,7 @@ const deleteCommand = (commandArr) => {
             printNowStatus();
         } else {
             console.log(
-                errorText + `id ${commandArr[1]}는 존재하지 않는 id 입니다`
+                `${errorText} id ${commandArr[1]}는 존재하지 않는 id 입니다`
             );
         }
     }
@@ -83,20 +78,26 @@ const deleteCommand = (commandArr) => {
 
 const updateCommand = (commandArr) => {
     if (commandArr.length === 1)
-        console.log(errorText + "변경할 todo의 id와 상태를 입력하세요 !");
+        console.log(`${errorText} 변경할 todo의 id와 상태를 입력하세요 !`);
     else if (commandArr.length === 2)
-        console.log(errorText + "변경할 todo의 상태를 입력하세요 !");
+        console.log(`${errorText} 변경할 todo의 상태를 입력하세요 !`);
     else {
         const todoObj = todos.find((data) => data.id === Number(commandArr[1]));
         if (todoObj) {
-            todoObj.status = commandArr[2];
-            console.log(
-                `${todoObj.name} ${commandArr[2]}으로 상태가 변경됐습니다`
-            );
-            printNowStatus();
+            if (todoObj.status === commandArr[2]) {
+                console.log(
+                    `${errorText} 변경할 상태가 이전 상태와 동일합니다 !`
+                );
+            } else {
+                todoObj.status = commandArr[2];
+                console.log(
+                    `${todoObj.name} ${commandArr[2]}으로 상태가 변경됐습니다`
+                );
+                printNowStatus();
+            }
         } else {
             console.log(
-                errorText + `id ${commandArr[1]}는 존재하지 않는 id 입니다`
+                `${errorText} id ${commandArr[1]}는 존재하지 않는 id 입니다`
             );
         }
     }

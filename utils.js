@@ -11,7 +11,7 @@ const printNowStatus = () => {
     const statusCounts = statusList.map(
         (status) => `${status} : ${countStatus(status)}개`
     );
-    console.log("현재상태 : " + statusCounts.join(", "));
+    console.log(`현재상태 : ${statusCounts.join(", ")}`);
 };
 
 const printStatusList = (status) => {
