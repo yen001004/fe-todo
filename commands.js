@@ -20,6 +20,7 @@ const commandShow = (commandArr) => {
             case "doing":
             case "done":
                 printStatusList(commandArr[1]);
+                break;
             default:
                 console.log(
                     errorText +
